@@ -7,3 +7,11 @@ Eventually, I'll want to figure out a way to keep track of which versions of a g
 App::cpanminus::reporter installed on AppVeyor; going to try on Travis.
 
 If that works, then I will want to work on encrypting my CPANTESTERS credentials for both frameworks
+
+By running cpanm-reporter without a config, I got error messages
+- travis-ci: file '/home/travis/.cpanreporter/config.ini' not found
+- appveyor: file 'C:\Users\appveyor\.cpanreporter\config.ini' not found
+
+So that tells me where I need to go next.
+
+Now I need to research the secure/encrypted files
