@@ -42,7 +42,7 @@ test_script:
   - if exist "Makefile" (perl -MConfig -le "system $Config{make}, 'test'") ELSE (prove -l t)
   - echo I am hoping an error message will tell me where to put the .cpanreporter/ hierarchy
   - echo cpanm-reporter
-  - 'C:\Users\appveyor\.cpanreporter\config.ini' not found
+  - echo 'C:\Users\appveyor\.cpanreporter\config.ini' not found
 
 artifacts:
   - path: chocologs
