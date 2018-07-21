@@ -51,7 +51,10 @@ test_script:
   - if exist "Makefile" (perl -MConfig -le "system $Config{make}, 'test'") ELSE (prove -l t)
   - echo cpanm-reporter
   - echo 'C:\Users\appveyor\.cpanreporter\config.ini' not found
-  - FOR /f "delims=" %%G in (ModuleList.txt) DO ( echo file = %%G )
+  - FOR /f "delims=" %%G in (ModuleList.txt) DO (
+        echo file = %%G
+        echo multiline
+        )
 
 artifacts:
   - path: chocologs
