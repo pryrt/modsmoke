@@ -49,7 +49,10 @@ test_script:
   - perl -le "print qq(test with perl v$])"
   - if exist "Makefile" (perl -MConfig -le "system $Config{make}, 'test'") ELSE (prove -l t)
   - FOR /f "delims=" %%G in (ModuleList.txt) DO (
-        echo cpanm %%G
+        dir "C:\Users\appveyor\.cpanm\build.log"
+        & echo cpanm %%G
+        & cpanm %%G
+        & dir "C:\Users\appveyor\.cpanm\build.log"
         & echo cpanm-reporter
         & echo =-=-=-=-=-=-=-=-=-=-=
         )
