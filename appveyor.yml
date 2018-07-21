@@ -53,7 +53,6 @@ test_script:
         & cpanm %%G
         & dir "C:\Users\appveyor\.cpanm\build.log"
         & echo cpanm-reporter
-        & cpanm-reporter
         & echo =-=-=-=-=-=-=-=-=-=-=
     )
 
