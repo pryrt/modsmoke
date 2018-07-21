@@ -34,7 +34,10 @@ install:
   - ps: iex ((New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/appveyor/secure-file/master/install.ps1'))
   - cmd: appveyor-tools\secure-file -decrypt .\av-cpanreporter\metabase_id.json.enc -secret %my_secret%
   - cmd: appveyor-tools\secure-file -decrypt .\av-cpanreporter\config.ini.enc -secret %my_secret%
-  - cmd: DIR . av-cpanreporter
+  - IF NOT EXIST "C:\users\appveyor\.cpanreporter" MKDIR "C:\users\appveyor\.cpanreporter"
+  - IF EXIST av-cpanreporter\metabase_id.json COPY "av-cpanreporter\metabase_id.json" "C:\users\appveyor\.cpanreporter\metabase_id.json"
+  - IF EXIST av-cpanreporter\config.ini COPY "av-cpanreporter\config.ini" "C:\users\appveyor\.cpanreporter\config.ini"
+  - IF EXIST "C:\users\appveyor\.cpanreporter" DIR "C:\users\appveyor\.cpanreporter"
 
 build_script:
   - echo build using Perl=%perl%...
@@ -49,6 +52,7 @@ test_script:
   - echo I am hoping an error message will tell me where to put the .cpanreporter/ hierarchy
   - echo cpanm-reporter
   - echo 'C:\Users\appveyor\.cpanreporter\config.ini' not found
+  - FOR /f "delims=" %G in (ModuleList.txt) DO ( echo file = %G )
 
 artifacts:
   - path: chocologs
