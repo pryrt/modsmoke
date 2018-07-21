@@ -15,3 +15,14 @@ By running cpanm-reporter without a config, I got error messages
 So that tells me where I need to go next.
 
 Now I need to research the secure/encrypted files
+
+--
+
+https://docs.travis-ci.com/user/encrypting-files
+so, Travis requires Ruby to encrypt... unfortunately, I cannot get it on my NAS (requires gcc)... I've grabbed the windows Ruby installer... but I'll postpone that for now.
+
+let's focus on appveyor, instead
+https://www.appveyor.com/docs/how-to/secure-files/
+* Grabbed the appveyor-tools via powershell
+* %userprofile%\appveyor-tools\secure-file -encrypt metabase_id.json -secret MYSECRET1234
+  (except use the real password)

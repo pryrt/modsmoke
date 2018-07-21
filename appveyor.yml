@@ -12,6 +12,8 @@ environment:
     - perl: 5.14.4.1
     ##failed##- perl: 5.12.3.0  # choco package points to outdated download URL
     ##failed##- perl: 5.12.3.1  # choco package points to outdated download URL
+  my_secret:
+    secure: jaDctcFyMpD/cnbje/T3BRr0JAlglYhW7NI/4nQZBXs=
 
 skip_tags: true
 
@@ -29,6 +31,10 @@ install:
   - cpanm --installdeps .
   - cpanm App::cpanminus::reporter
   - IF EXIST "C:\Users\appveyor\.cpanm\build.log" COPY /Y "C:\Users\appveyor\.cpanm\build.log" cpanm.build.log
+  - ps: iex ((New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/appveyor/secure-file/master/install.ps1'))
+  - cmd: %userprofile%\appveyor-tools\secure-file -decrypt .\av-cpanreporter\metabase_id.json.enc -secret %my_secret%
+  - cmd: %userprofile%\appveyor-tools\secure-file -decrypt .\av-cpanreporter\config.ini.enc -secret %my_secret%
+  - cmd: DIR /S
 
 build_script:
   - echo build using Perl=%perl%...
