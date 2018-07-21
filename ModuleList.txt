@@ -1,4 +1,4 @@
-PETERCJ/Math-PRBS-v0.002
-PETERCJ/Math-PRBS-v0.004
-Math::PRBS
-Data::IEEE754::Tools
+PETERCJ/Math-PRBS-v0.002.tar.gz
+;PETERCJ/Math-PRBS-v0.004.tar.gz
+;Math::PRBS
+;Data::IEEE754::Tools
