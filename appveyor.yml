@@ -32,9 +32,10 @@ install:
   - cpanm App::cpanminus::reporter
   - IF EXIST "C:\Users\appveyor\.cpanm\build.log" COPY /Y "C:\Users\appveyor\.cpanm\build.log" cpanm.build.log
   - ps: iex ((New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/appveyor/secure-file/master/install.ps1'))
-  - cmd: c:\Users\appveyor\appveyor-tools\secure-file -decrypt .\av-cpanreporter\metabase_id.json.enc -secret %my_secret%
-  - cmd: c:\Users\appveyor\appveyor-tools\secure-file -decrypt .\av-cpanreporter\config.ini.enc -secret %my_secret%
+  - cmd: echo c:\Users\appveyor\appveyor-tools\secure-file -decrypt .\av-cpanreporter\metabase_id.json.enc -secret %my_secret%
+  - cmd: echo c:\Users\appveyor\appveyor-tools\secure-file -decrypt .\av-cpanreporter\config.ini.enc -secret %my_secret%
   - cmd: DIR /S
+  - cmd: DIR c:\users\appveyor
 
 build_script:
   - echo build using Perl=%perl%...
