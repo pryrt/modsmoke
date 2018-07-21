@@ -36,6 +36,8 @@ before_script:
 
 script:
   - prove -lrv t
+  - echo I am hoping an error message will tell me where to put the .cpanreporter/ hierarchy
+  - cpanm-reporter
 
 after_success:
   #- coverage-report
