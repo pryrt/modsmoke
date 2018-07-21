@@ -53,6 +53,7 @@ test_script:
   - echo 'C:\Users\appveyor\.cpanreporter\config.ini' not found
   - FOR /f "delims=" %%G in (ModuleList.txt) DO (
         echo file = %%G
+        &
         echo multiline
         )
 
