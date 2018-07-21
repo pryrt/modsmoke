@@ -7,9 +7,9 @@ environment:
     #- perl: 5.20.3.3
     #- perl: 5.18.4.1
     ##failed##- perl: 5.16.3.1  # choco package points to outdated download URL
-    - perl: 5.16.3.20170202
     #- perl: 5.16.3.20170202
-    #- perl: 5.14.4.1
+    #- perl: 5.16.3.20170202
+    - perl: 5.14.4.1
     ##failed##- perl: 5.12.3.0  # choco package points to outdated download URL
     ##failed##- perl: 5.12.3.1  # choco package points to outdated download URL
 
@@ -33,18 +33,14 @@ install:
 build_script:
   - echo build using Perl=%perl%...
   - perl -le "print qq(build with perl v$])"
-  ## make: but don't want to have to know whether strawberry is using dmake, gmake, or futuremake
   - if exist "Makefile.PL" (perl Makefile.PL)
   - if exist "Makefile"    (perl -MConfig -le "system $Config{make}")
 
 test_script:
   - echo test Perl=%perl%...
   - perl -le "print qq(test with perl v$])"
-  ## make test: but don't want to have to know whether strawberry is using dmake, gmake, or futuremake
   - if exist "Makefile" (perl -MConfig -le "system $Config{make}, 'test'") ELSE (prove -l t)
-  - if exist "Makefile" (perl -MConfig -le "system $Config{make}, 'testcover'")
 
 artifacts:
-  - path: cover_db
   - path: chocologs
   - path: cpanm.build.log
