@@ -37,7 +37,6 @@ install:
   - IF NOT EXIST "C:\users\appveyor\.cpanreporter" MKDIR "C:\users\appveyor\.cpanreporter"
   - IF EXIST av-cpanreporter\metabase_id.json COPY "av-cpanreporter\metabase_id.json" "C:\users\appveyor\.cpanreporter\metabase_id.json"
   - IF EXIST av-cpanreporter\config.ini COPY "av-cpanreporter\config.ini" "C:\users\appveyor\.cpanreporter\config.ini"
-  - IF EXIST "C:\users\appveyor\.cpanreporter" DIR "C:\users\appveyor\.cpanreporter"
 
 build_script:
   - echo build using Perl=%perl%...
@@ -49,8 +48,6 @@ test_script:
   - echo test Perl=%perl%...
   - perl -le "print qq(test with perl v$])"
   - if exist "Makefile" (perl -MConfig -le "system $Config{make}, 'test'") ELSE (prove -l t)
-  - echo cpanm-reporter
-  - echo 'C:\Users\appveyor\.cpanreporter\config.ini' not found
   - FOR /f "delims=" %%G in (ModuleList.txt) DO (
         echo cpanm %%G
         & echo cpanm-reporter
