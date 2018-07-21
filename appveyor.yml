@@ -52,9 +52,9 @@ test_script:
   - echo cpanm-reporter
   - echo 'C:\Users\appveyor\.cpanreporter\config.ini' not found
   - FOR /f "delims=" %%G in (ModuleList.txt) DO (
-        echo file = %%G
-        &
-        echo multiline
+        echo cpanm %%G
+        & echo cpanm-reporter
+        & echo =-=-=-=-=-=-=-=-=-=-=
         )
 
 artifacts:
