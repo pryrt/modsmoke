@@ -34,3 +34,8 @@ https://www.appveyor.com/docs/how-to/secure-files/
 * Grabbed the appveyor-tools via powershell
 * %userprofile%\appveyor-tools\secure-file -encrypt metabase_id.json -secret MYSECRET1234
   (except use the real password)
+
+### Skipping builds
+
+Both [AppVeyor](https://www.appveyor.com/docs/how-to/filtering-commits/) and [Travis-CI](https://docs.travis-ci.com/user/customizing-the-build/) will obey `[skip ci]` or `[ci skip]`.
+AppVeyor also allows `[skip appveyor]`, but I cannot find an Travis-CI-specific equivalent documented.
