@@ -1,5 +1,6 @@
 environment:
   matrix:
+    - perl: 5.28.0.1
     - perl: 5.26.2.1
     - perl: 5.24.4.1
     - perl: 5.22.3.1
@@ -26,6 +27,10 @@ install:
   - IF EXIST "c:\ProgramData\chocolatey\logs" COPY /Y "c:\ProgramData\chocolatey\logs" "chocologs"
   - set PATH=C:\strawberry\perl\bin;C:\strawberry\perl\site\bin;C:\strawberry\c\bin;%PATH%
   - perl -le "print qq(installed perl v$])"
+  - echo Make sure c:\temp and c:\tmp exist for Data::UUID
+  - IF NOT EXIST "c:\temp" MKDIR "c:\temp"
+  - IF NOT EXIST "c:\tmp" MKDIR "c:\tmp"
+  - echo install required CPAN repos
   - cpanm --installdeps .
   - cpanm App::cpanminus::reporter
   - IF EXIST "C:\Users\appveyor\.cpanm\build.log" COPY /Y "C:\Users\appveyor\.cpanm\build.log" cpanm.build.log
@@ -46,14 +51,13 @@ test_script:
   - echo test Perl=%perl%...
   - perl -le "print qq(test with perl v$])"
   - if exist "Makefile" (perl -MConfig -le "system $Config{make}, 'test'") ELSE (prove -l t)
-  - |
-    FOR /f "delims=" %%G in (ModuleList.txt) DO (
+  - FOR /f "delims=" %%G in (ModuleList.txt) DO (
         echo cpanm %%G
-        cpanm %%G
-        dir "C:\Users\appveyor\.cpanm\build.log"
-        echo cpanm-reporter
-        cpanm-reporter
-        echo =-=-=-=-=-=-=-=-=-=-=
+        & cpanm %%G
+        & dir "C:\Users\appveyor\.cpanm\build.log"
+        & echo cpanm-reporter
+        & cpanm-reporter
+        & echo =-=-=-=-=-=-=-=-=-=-=
     )
 
 artifacts:
