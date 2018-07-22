@@ -26,33 +26,26 @@ before_install:
   - build-dist
   - cd $BUILD_DIR                       # $BUILD_DIR is set by the build-dist command
   - echo $my_secret | gpg --passphrase-fd 0 -o tr-cpanreporter/metabase_id.json tr-cpanreporter/metabase_id.json.gpg
-  - echo $my_secret | gpg --passphrase-fd 0 -o tr-cpanreporter/config.ini tr-cpanreporter/config.ini.gpg
+  - echo $my_secret | gpg --passphrase-fd 0 -o tr-cpanreporter/config.ini       tr-cpanreporter/config.ini.gpg
   - ls -latr tr-cpanreporter
+  - mkdir /home/travis/.cpanreporter
+  - cp -p tr-cpanreporter/metabase_id.json  /home/travis/.cpanreporter/
+  - cp -p tr-cpanreporter/config.ini        /home/travis/.cpanreporter/
 
 install:
   - cpan-install --deps                 # installs prereqs, including recommends
-  #- cpan-install --coverage            # installs converage prereqs, if enabled
   - cpanm App::cpanminus::reporter      # can I install the cpanm-reporter
-
-before_script:
-  #- coverage-setup
 
 script:
   - prove -lrv t
   - |
     for fn in `egrep -v '^;' ModuleList.txt`; do
+      echo cpanm $fn
       cpanm $fn
+      echo cpanm-reporter
       cpanm-reporter
       echo =-=-=-=-=-=-=-=-=-=-=
     done
-
-after_success:
-  #- coverage-report
-
-#matrix:
-#  include:
-#    - perl: "5.26"
-#      env: COVERAGE=1
 
 env:
   global:
