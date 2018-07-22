@@ -33,7 +33,7 @@ https://www.appveyor.com/docs/how-to/secure-files/
 * worked
 
 https://docs.travis-ci.com/user/encrypting-files
-* so, Travis requires Ruby to encrypt... unfortunately, I cannot get it on my NAS (requires gcc)... I've grabbed the windows Ruby installer... but I'll postpone that for now.
+* so, Travis requires Ruby to encrypt...
 
 ### Skipping builds
 

@@ -25,6 +25,9 @@ before_install:
   - perl -V
   - build-dist
   - cd $BUILD_DIR                       # $BUILD_DIR is set by the build-dist command
+  - echo $my_secret | gpg --passphrase-fd 0 -o tr-cpanreporter/metabase_id.json tr-cpanreporter/metabase_id.json.gpg
+  - echo $my_secret | gpg --passphrase-fd 0 -o tr-cpanreporter/config.ini tr-cpanreporter/config.ini.gpg
+  - ls -latr tr-cpanreporter
 
 install:
   - cpan-install --deps                 # installs prereqs, including recommends
@@ -47,3 +50,7 @@ after_success:
 #  include:
 #    - perl: "5.26"
 #      env: COVERAGE=1
+
+env:
+  global:
+    secure: gzVDbFDVLNUAvpkWQBHAJShEixF9I7ThLz67IVCwdPjTBH2tqD/o3kaNTCNOSX/50Wnm5bxuwMDBRrT+gIMQ7pTDeP/4QvUEBIO8bLzVqydSDUs0hvLzUwprI9RubLKHDCxmK+vu6LedHeYO1qa4KPyKdbYLf2akZB7eopHoBgjBzHKnOoiTcl92wmVjF9qFjz1QVqQwf7t/nlKNVWnP/z34xJCA8bPxfU+8LvVZkcDt6Nv34KdpRp28Mf/cKFd6Q6oil42f/wmcdFryLIOzn9IxiWVi6oiZkS+pKk0bNmRhHzXqXk5laEjpb7CLR7Np7J383Yor3G0n12Ran5X1AEOeBtoJxrpqfyT01jvLzsX3TY6UAa2bmd9rsOJ+O45Fm6HRJXTUvpxd2KMhixOmMFUxo42OZiaoBQLFI7vpusedgKNyIYhBsIstXbVU5RJZAMkLXn//hKMNgVXbAXMPrrhXWdTai9HAUIat1UmxbK5Cy7TEqaVBnBiXHEcgwDqQkDCcGzj2OrjyfGjWNqxiImYKli8GLPSyiKDLiwFAKu1a1gyNV84Rk9903xIhyYaDhioNNjIzbnEc4+iq1uItlAGrwTo/MLvP2El0jjaJYdISkzv0h/ZCJA6mx5mXb7dwTJ7hGr5+tcXf7TCZYN9A9dvwY6s5vxUjdm8gk2dkx+Y=
