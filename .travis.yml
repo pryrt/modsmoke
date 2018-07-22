@@ -39,9 +39,12 @@ before_script:
 
 script:
   - prove -lrv t
-  - echo I am hoping an error message will tell me where to put the .cpanreporter/ hierarchy
-  - echo cpanm-reporter
-  - echo '/home/travis/.cpanreporter/config.ini' not found
+  - |
+    for fn in `cat ModuleList.txt`; do
+      echo cpanm $fn
+      echo cpanm-reporter
+      echo =-=-=-=-=-=-=-=-=-=-=
+    done
 
 after_success:
   #- coverage-report
