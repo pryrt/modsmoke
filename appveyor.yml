@@ -1,14 +1,12 @@
 environment:
   matrix:
-    #- perl: default
-    #- perl: 5.26.2.1
-    #- perl: 5.24.4.1
-    #- perl: 5.22.3.1
-    #- perl: 5.20.3.3
-    #- perl: 5.18.4.1
+    - perl: 5.26.2.1
+    - perl: 5.24.4.1
+    - perl: 5.22.3.1
+    - perl: 5.20.3.3
+    - perl: 5.18.4.1
     ##failed##- perl: 5.16.3.1  # choco package points to outdated download URL
-    #- perl: 5.16.3.20170202
-    #- perl: 5.16.3.20170202
+    - perl: 5.16.3.20170202
     - perl: 5.14.4.1
     ##failed##- perl: 5.12.3.0  # choco package points to outdated download URL
     ##failed##- perl: 5.12.3.1  # choco package points to outdated download URL
@@ -48,12 +46,14 @@ test_script:
   - echo test Perl=%perl%...
   - perl -le "print qq(test with perl v$])"
   - if exist "Makefile" (perl -MConfig -le "system $Config{make}, 'test'") ELSE (prove -l t)
-  - FOR /f "delims=" %%G in (ModuleList.txt) DO (
+  - |
+    FOR /f "delims=" %%G in (ModuleList.txt) DO (
         echo cpanm %%G
-        & cpanm %%G
-        & dir "C:\Users\appveyor\.cpanm\build.log"
-        & echo cpanm-reporter
-        & echo =-=-=-=-=-=-=-=-=-=-=
+        cpanm %%G
+        dir "C:\Users\appveyor\.cpanm\build.log"
+        echo cpanm-reporter
+        cpanm-reporter
+        echo =-=-=-=-=-=-=-=-=-=-=
     )
 
 artifacts:
