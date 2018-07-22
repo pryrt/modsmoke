@@ -26,14 +26,14 @@ So now I know where those go.
 
 ### Encrypting .cpanreporter configuration
 
-https://docs.travis-ci.com/user/encrypting-files
-* so, Travis requires Ruby to encrypt... unfortunately, I cannot get it on my NAS (requires gcc)... I've grabbed the windows Ruby installer... but I'll postpone that for now.
-
-let's focus on appveyor, instead
 https://www.appveyor.com/docs/how-to/secure-files/
 * Grabbed the appveyor-tools via powershell
 * %userprofile%\appveyor-tools\secure-file -encrypt metabase_id.json -secret MYSECRET1234
   (except use the real password)
+* worked
+
+https://docs.travis-ci.com/user/encrypting-files
+* so, Travis requires Ruby to encrypt... unfortunately, I cannot get it on my NAS (requires gcc)... I've grabbed the windows Ruby installer... but I'll postpone that for now.
 
 ### Skipping builds
 
