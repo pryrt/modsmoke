@@ -41,8 +41,8 @@ script:
   - prove -lrv t
   - |
     for fn in `egrep -v '^;' ModuleList.txt`; do
-      echo cpanm $fn
-      echo cpanm-reporter
+      cpanm $fn
+      cpanm-reporter
       echo =-=-=-=-=-=-=-=-=-=-=
     done
 
