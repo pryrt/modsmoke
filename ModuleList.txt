@@ -1,6 +1,5 @@
 ;Games::Literati
-; https://cpan.metacpan.org/authors/id/P/PE/PETERCJ/Math-PRBS-v0.002.tar.gz
-PETERCJ/Math-PRBS-v0.002.tar.gz
+http://www.cpan.org/authors/id/P/PE/PETERCJ/Math-PRBS-v0.002.tar.gz
 ;Math::PRBS
 ;https://cpan.metacpan.org/authors/id/P/PE/PETERCJ/Data-IEEE754-Tools-v0.010.tar.gz
 ;https://cpan.metacpan.org/authors/id/P/PE/PETERCJ/Data-IEEE754-Tools-v0.012.tar.gz
