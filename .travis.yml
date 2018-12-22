@@ -40,7 +40,7 @@ install:
 script:
   - prove -lrv t
   - |
-    for fn in `egrep -v '^;' ModuleList.txt`; do
+    for fn in `egrep -v '^;' ModuleList.txt | egrep -v '^http'`; do
       echo cpanm $fn
       cpanm $fn
       echo cpanm-reporter
